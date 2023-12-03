@@ -1,0 +1,86 @@
+<tns-header-banner></tns-header-banner>
+<tns-social-bar></tns-social-bar>
+
+<div ly-container bg="background:primary">
+    <ly-tabs [selectedIndex]="1" [animationDuration]="1" indicatorColor="#EF6D6D" bg="primary">
+        <ly-tab>
+            <a routerLink="/courses" ly-tab-label class="link-format">Courses</a>
+        </ly-tab>
+        <ly-tab>
+            <a routerLink="/blog" ly-tab-label class="link-format">Blog</a>
+        </ly-tab>
+        <ly-tab>
+            <a routerLink="/programs" ly-tab-label class="link-format">Program</a>
+            <!-- Last Listed Tab must not contain nested Component -->
+          </ly-tab>
+    </ly-tabs>
+</div>
+
+
+<ly-grid container>
+    <!-- Filter and Search Sidebar -->
+    <ly-grid item [col]="'2 12@XSmall'" class="tns-light-bg">
+        <div [lyP]="2">
+            <h2 [lyPx]="3" style="text-align: center;">Search & Filter</h2>
+
+            <!-- Search Bar -->
+            <div [lyPy]="3">
+                <h4 lyTyp="title">Search</h4>
+                <ly-field class="tns-item-width-100">
+                    <button ly-button appearance="icon" lyPrefix [lyMf]="'0.25em'">
+                        <ly-icon>search</ly-icon>
+                    </button>
+                    <input [(ngModel)]="titleText" (ngModelChange)="searchBlogByTitle()" placeholder="Search by Article"
+                        lyNativeControl>
+                </ly-field>
+            </div>
+
+            <!-- Platform Selection -->
+            <div [lyPb]="3">
+                <h4 lyTyp="title">Topics</h4>
+                <ly-field class="tns-item-width-100">
+                    <ly-select [(ngModel)]="selectedTopics" multiple placeholder="Filter by Platform"
+                        (ngModelChange)="makeSelection()">
+                        <ly-option *ngFor="let subject of subjects" [value]="subject">{{ subject }}</ly-option>
+                    </ly-select>
+                </ly-field>
+            </div>
+        </div>
+        <ng-adsense [adClient]="'ca-pub-9433482425426502'" [adSlot]="1060135264"></ng-adsense>
+    </ly-grid>
+
+    <!-- Blog Cards -->
+    <ly-grid item [col]="'10 12@XSmall'">
+        <ly-grid container lyJustifyContent="center" [lyPt]="2">
+            <!-- Blog Cards Array -->
+            <ly-grid item *ngFor="let blog of blogArticles">
+                <!-- Blog Image -->
+                <ly-card [lyMaxWidth]="'275 350@XSmall'" [lyM]="2">
+                    <a [href]="blog.blog_url">
+                        <ly-card-media [alt]="blog.blog_title + ' image'" [bgImg]="blog.blog_image"
+                            [title]="blog.blog_title"></ly-card-media>
+                    </a>
+                    <ly-card-content>
+                        <a [href]="blog.blog_url" class="no-decorator" lyColor="primary">
+                            <h2 lyTyp="headline" [gutterBottom]="true">{{ blog.blog_title }}</h2>
+                        </a>
+
+                        <p lyTyp="body1">
+                            {{ blog.blog_intro.substring(0, 100) + ' ...' }}
+                        </p>
+                    </ly-card-content>
+                    <ly-card-actions>
+                        <ly-grid item>
+                            <a ly-button [href]="blog.blog_url" lyColor="accent" class="tns-read-font-size">
+                                Read
+                            </a>
+                        </ly-grid>
+                        <tns-social-share [shareTitle]="blog.blog_title" [shareUrl]="blog.blog_url"></tns-social-share>
+                    </ly-card-actions>
+                </ly-card>
+            </ly-grid>
+        </ly-grid>
+    </ly-grid>
+</ly-grid>
+
+<tns-footer></tns-footer>

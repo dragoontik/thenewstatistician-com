@@ -1,0 +1,100 @@
+<tns-header-banner></tns-header-banner>
+<tns-social-bar></tns-social-bar>
+
+<div ly-container bg="background:primary">
+    <ly-tabs [selectedIndex]="0" [animationDuration]="1" indicatorColor="#EF6D6D" bg="primary">
+      <ly-tab>
+        <a routerLink="/courses" ly-tab-label class="link-format">Courses</a>
+        <!-- <tns-courses></tns-courses> -->
+      </ly-tab>
+      <ly-tab>
+        <a routerLink="/blog" ly-tab-label class="link-format">Blog</a>
+      </ly-tab>
+      <ly-tab>
+        <a routerLink="/books" ly-tab-label class="link-format">Program</a>
+        <!-- Last Listed Tab must not contain nested Component -->
+      </ly-tab>
+    </ly-tabs>
+  </div>
+
+<ly-grid container>
+    <!-- Filter and Search Sidebar -->
+    <ly-grid item [col]="'2 12@XSmall'" class="tns-light-bg">
+        <div [lyP]="2">
+            <h2 [lyPx]="3" style="text-align: center;">Search & Filter</h2>
+
+            <!-- Search Bar -->
+            <div [lyPy]="3">
+                <h4 lyTyp="title">Search</h4>
+                <ly-field class="tns-item-width-100">
+                    <button ly-button appearance="icon" lyPrefix [lyMf]="'0.25em'">
+                        <ly-icon>search</ly-icon>
+                    </button>
+                    <input [(ngModel)]="courseNameText" (ngModelChange)="searchCouseName()"
+                        placeholder="Search by Course Name" lyNativeControl>
+                </ly-field>
+            </div>
+
+            <!-- Platform Selection -->
+            <div [lyPb]="3">
+                <h4 lyTyp="title">Platforms</h4>
+                <ly-field class="tns-item-width-100">
+                    <ly-select [(ngModel)]="selectedPlatforms" (ngModelChange)="selectPlatform()" multiple
+                        placeholder="Filter by Platform">
+                        <ly-option *ngFor="let platform of platforms; index as i" [value]="platform">{{ platform }}
+                        </ly-option>
+                    </ly-select>
+                </ly-field>
+            </div>
+
+            <!-- Subject Selection -->
+            <div [lyPb]="3">
+                <h4 lyTyp="title">Topics</h4>
+                <ly-field class="tns-item-width-100">
+                    <ly-select [(ngModel)]="selectedSubjects" (ngModelChange)="selectSubject()" multiple
+                        placeholder="Filter by Topic">
+                        <ly-option *ngFor="let subject of subjects; index as i" [value]="subject">{{ subject }}
+                        </ly-option>
+                    </ly-select>
+                </ly-field>
+            </div>
+        </div>
+        <ng-adsense [adClient]="'ca-pub-9433482425426502'" [adSlot]="6363313270"></ng-adsense>
+    </ly-grid>
+
+    <!-- Course Cards -->
+    <ly-grid item [col]="'10 12@XSmall'">
+        <ly-grid container lyJustifyContent="center" [lyPt]="2" >
+            <ly-grid item *ngFor="let course of courses">
+                <ly-card [lyMaxWidth]="'275 350@XSmall'" [lyM]="2">
+                    <a [href]="course.course_page_url" target="_blank">
+                        <ly-card-media [bgImg]="course.course_logo_url" [title]="course.course_name"></ly-card-media>
+                    </a>
+                    <ly-card-content>
+                        <a [href]="course.course_page_url" target="_blank" class="no-decorator" lyColor="primary">
+                        <h2 lyTyp="headline" [gutterBottom]="true">{{ course.course_name }} </h2>
+                    </a>
+                        <p lyTyp="body1">
+                            {{ course.course_description.substring(0, 150) + ' ...' }}
+                        </p>
+                    </ly-card-content>
+                    <ly-card-actions [disableActionSpacing]="true">
+
+                        <ly-grid item>
+                            <a ly-button [href]="course.course_page_url" target="_blank" color="accent"
+                                class="tns-read-font-size">
+                                Learn
+                            </a>
+                        </ly-grid>
+                        <tns-social-share [shareItemName]="course.course_name" [shareTitle]="course.course_name"
+                            [shareUrl]="course.course_page_url_short"></tns-social-share>
+
+                    </ly-card-actions>
+                </ly-card>
+            </ly-grid>
+            <ng-adsense [adClient]="'ca-pub-9433482425426502'" [adSlot]="1060135264"></ng-adsense>
+        </ly-grid>
+    </ly-grid>
+</ly-grid>
+
+<tns-footer></tns-footer>

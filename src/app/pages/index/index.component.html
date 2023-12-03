@@ -1,0 +1,68 @@
+
+
+
+  <tns-header-bar></tns-header-bar>
+<div [lyPt]="8">
+  <tns-header-banner></tns-header-banner>
+</div>
+
+
+<ly-grid container>
+  <ly-grid item [lyP]="5" [col]="12">
+      <h1 class="text-center" >Featured Courses</h1>
+      <p class="text-center" >See More of our Currated Course, Articles and Books</p>
+      <div class="text-center">
+        <button routerLink="courses" [lyMx]="1" ly-button raised lyBg="#357C3C" lyColor="#FFFFFF" >Courses</button>
+        <button routerLink="blog" [lyMx]="1" ly-button raised lyBg="#357C3C" lyColor="#FFFFFF">Blog</button>
+        <button routerLink="programs" [lyMx]="1" ly-button raised lyBg="#357C3C" lyColor="#FFFFFF">Program</button>
+      </div>
+
+  </ly-grid>
+  <ly-grid item [col]="10">
+    <ly-grid container lyJustifyContent="center" [lyPt]="0" >
+    <ly-grid item *ngFor="let course of featuredCourses" >
+
+      <ly-card [lyMaxWidth]="'275 350@XSmall'" [lyM]="2">
+        <a [href]="course.course_page_url" target="_blank">
+            <ly-card-media [bgImg]="course.course_logo_url" [title]="course.course_name"></ly-card-media>
+        </a>
+        <ly-card-content>
+            <a [href]="course.course_page_url" target="_blank" class="no-decorator" lyColor="primary">
+            <h2 lyTyp="headline" [gutterBottom]="true">{{ course.course_name }} </h2>
+        </a>
+            <p lyTyp="body1">
+                {{ course.course_description.substring(0, 150) + ' ...' }}
+            </p>
+        </ly-card-content>
+        <ly-card-actions [disableActionSpacing]="true">
+
+            <ly-grid item>
+                <a ly-button [href]="course.course_page_url" target="_blank" lyColor="accent"
+                    class="tns-read-font-size">
+                    Learn
+                </a>
+            </ly-grid>
+            <tns-social-share [shareItemName]="course.course_name" [shareTitle]="course.course_name"
+                [shareUrl]="course.course_page_url_short"></tns-social-share>
+
+        </ly-card-actions>
+    </ly-card>
+
+
+    </ly-grid>
+  </ly-grid>
+  </ly-grid>
+
+  <ly-grid item [col]="2" class="text-center" lyJustifyContent="center">
+    <ng-adsense [adClient]="'ca-pub-9433482425426502'" [adSlot]="1060135264"></ng-adsense>
+  </ly-grid>
+</ly-grid>
+
+
+<!-- <tns-social-bar></tns-social-bar>  -->
+
+      <!-- <tns-courses></tns-courses> -->
+
+
+<tns-footer></tns-footer>
+   

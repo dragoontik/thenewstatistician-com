@@ -1,0 +1,43 @@
+<tns-header-bar [lyPb]="10"></tns-header-bar>
+
+<ly-grid container [lyPt]="8" [lyPb]="5">
+
+    <ly-grid item col="10 12@XSmall" [lyPx]="'15@XMedium 2@XSmall'" [lyPb]="3" [lyPt]="3">
+
+        <h1 class="text-center">{{ blogArticleDetails.blog_title }}</h1>
+
+        <ly-grid container>
+            <ly-grid item col="6" lyPt="1"><span>Published: </span>
+                <span class="bold-font">
+                    {{ blogArticleDetails.publish_date | date }}
+                </span>
+            </ly-grid>
+            <ly-grid item col="6" class="text-end"><span>Share: </span>
+                <tns-social-share></tns-social-share>
+            </ly-grid>
+        </ly-grid>
+
+        <!-- Article Body -->
+        <div [innerHTML]="blogHtmlBody">
+        </div>
+        <br>
+        <ng-adsense className="added-margin-non-ly" [adClient]="'ca-pub-9433482425426502'" [adSlot]="3467116184"></ng-adsense>
+        <br>
+    </ly-grid>
+
+    <ly-grid item col="2" [lyPt]="5" class="text-center">
+        <!-- Place Ads Here -->
+        <ng-adsense className="added-margin-non-ly" [adClient]="'ca-pub-9433482425426502'" [adSlot]="1060135264"></ng-adsense>
+        <ng-adsense className="added-margin-non-ly" [adClient]="'ca-pub-9433482425426502'" [adSlot]="6363313270"></ng-adsense>
+    </ly-grid>
+</ly-grid>
+
+
+<!-- TNS Social Bar -->
+<tns-social-bar [shareItemName]="blogArticleDetails.blog_title" [shareTitle]="blogArticleDetails.blog_title"
+    [shareUrl]="blogArticleDetails.blog_url"></tns-social-bar>
+
+<!-- Blank Footer -->
+<div lyHeight="150px" lyBg="#357C3C">
+
+</div>

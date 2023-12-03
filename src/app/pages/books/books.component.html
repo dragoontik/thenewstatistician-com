@@ -1,0 +1,30 @@
+<tns-header-banner></tns-header-banner>
+<tns-social-bar></tns-social-bar>
+
+<div ly-container bg="background:primary">
+    <ly-tabs [selectedIndex]="2" [animationDuration]="1" indicatorColor="#EF6D6D" bg="primary">
+      <ly-tab>
+        <a routerLink="/courses" ly-tab-label class="link-format">Courses</a>
+        <!-- <tns-courses></tns-courses> -->
+      </ly-tab>
+      <ly-tab>
+        <a routerLink="/blog" ly-tab-label class="link-format">Blog</a>
+      </ly-tab>
+      <ly-tab>
+        <a routerLink="/books" ly-tab-label class="link-format">Books</a>
+        <!-- Last Listed Tab must not contain nested Component -->
+      </ly-tab>
+    </ly-tabs>
+  </div>
+
+
+  <p [lyP]="3">Books Coming Soon!</p>
+<ly-grid container>
+    <!-- Filter and Search Sidebar -->
+    <ly-grid item [col]="'2 12@XSmall'" class="tns-light-bg" >
+       
+    </ly-grid>
+</ly-grid>
+
+
+<tns-footer></tns-footer>

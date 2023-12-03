@@ -1,0 +1,61 @@
+<tns-header-banner></tns-header-banner>
+<tns-social-bar></tns-social-bar>
+
+<div ly-container bg="background:primary">
+  <ly-tabs
+    [selectedIndex]="2"
+    [animationDuration]="1"
+    indicatorColor="#EF6D6D"
+    bg="primary"
+  >
+    <ly-tab>
+      <a routerLink="/courses" ly-tab-label class="link-format">Courses</a>
+    </ly-tab>
+    <ly-tab>
+      <a routerLink="/blog" ly-tab-label class="link-format">Blog</a>
+    </ly-tab>
+    <ly-tab>
+      <a routerLink="/programs" ly-tab-label class="link-format">Program</a>
+      <!-- Last Listed Tab must not contain nested Component -->
+    </ly-tab>
+  </ly-tabs>
+
+ <ly-grid container> 
+
+
+    <ly-grid item [lyM]="2" *ngFor="let program of programs" >
+        
+        <ly-card [lyMaxWidth]="400" lyMb="3" >
+            <a [href]="program.program_site_url" target="_blank">
+            <ly-card-media 
+            [lyHeight]="350"
+              [bgImg]="program.program_site_logo"
+              title="Blue Mountains"
+            ></ly-card-media>
+        </a>
+            <ly-card-content>
+              <h1 >{{ program.program_name }}</h1>
+              <p lyTyp="body1">
+                {{ program.program_description }}
+              </p>
+            </ly-card-content>
+            <ly-card-actions [disableActionSpacing]="true">
+
+                <ly-grid item>
+                    <a ly-button [href]="program.program_site_url" target="_blank" color="accent"
+                        class="tns-read-font-size">
+                        Learn
+                    </a>
+                </ly-grid>
+                <tns-social-share [shareItemName]="program.program_name" [shareTitle]="program.program_name"
+                    [shareUrl]="program.program_page_url_short"></tns-social-share>
+
+            </ly-card-actions>
+          </ly-card>
+
+      </ly-grid>
+
+</ly-grid> 
+
+</div>
+

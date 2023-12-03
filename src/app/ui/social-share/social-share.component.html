@@ -1,0 +1,19 @@
+<!-- Facebook -->
+<a [title]="shareItemName" ly-button lyColor="accent" appearance="icon" shareButton="facebook" [url]="shareUrl"  >
+    <i class="fa-brands fa-facebook tns-icon-size"></i>
+</a>
+
+<!-- Twitter -->
+<a ly-button [title]="shareItemName"  appearance="icon" lyColor="accent" shareButton="twitter" [url]="shareUrl" >
+    <i class="fa-brands fa-twitter tns-icon-size"></i>
+</a>
+
+<!-- LinkedIn -->
+<a ly-button [title]="shareItemName"  appearance="icon" lyColor="accent" shareButton="linkedin" [url]="shareUrl" >
+    <i class="fa-brands fa-linkedin-in tns-icon-size"></i>
+</a>
+
+<!-- Email -->
+<a [href]="'mailto:?subject=' + shareTitle + '&amp;' + 'body=Here is a useful data science article ' + '\n' + shareUrl" appearance="icon" ly-button  lyColor="accent"    >
+    <i class="fa-solid fa-envelope"></i>
+</a>
